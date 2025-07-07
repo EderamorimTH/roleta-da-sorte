@@ -24,7 +24,7 @@ body {
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
     border-top: 40px solid #FFD700;
-    z-index: 10;
+    z-index: 15;
 }
 
 .roleta {
@@ -34,7 +34,6 @@ body {
     border-radius: 50%;
     border: 8px solid #333;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
     transform: rotate(0deg);
     transition: transform 8s cubic-bezier(0.1, 0.7, 0.2, 1);
 }
@@ -61,27 +60,26 @@ body {
 
 .premio {
     position: absolute;
-    width: 100px;
+    width: 120px;
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     color: #fff;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    top: 50%;
-    left: 50%;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    z-index: 10;
 }
 
-.premio1 { transform: translate(-50%, -50%) rotate(16.36deg) translateY(-220px) rotate(-16.36deg); }
-.premio2 { transform: translate(-50%, -50%) rotate(49.09deg) translateY(-220px) rotate(-49.09deg); }
-.premio3 { transform: translate(-50%, -50%) rotate(81.82deg) translateY(-220px) rotate(-81.82deg); }
-.premio4 { transform: translate(-50%, -50%) rotate(114.55deg) translateY(-220px) rotate(-114.55deg); }
-.premio5 { transform: translate(-50%, -50%) rotate(147.28deg) translateY(-220px) rotate(-147.28deg); }
-.premio6 { transform: translate(-50%, -50%) rotate(180.01deg) translateY(-220px) rotate(-180.01deg); }
-.premio7 { transform: translate(-50%, -50%) rotate(212.74deg) translateY(-220px) rotate(-212.74deg); }
-.premio8 { transform: translate(-50%, -50%) rotate(245.47deg) translateY(-220px) rotate(-245.47deg); }
-.premio9 { transform: translate(-50%, -50%) rotate(278.20deg) translateY(-220px) rotate(-278.20deg); }
-.premio10 { transform: translate(-50%, -50%) rotate(310.93deg) translateY(-220px) rotate(-310.93deg); }
-.premio11 { transform: translate(-50%, -50%) rotate(343.66deg) translateY(-220px) rotate(-343.66deg); }
+.premio1 { transform: translate(200px, 0) rotate(-16.36deg); }
+.premio2 { transform: rotate(32.73deg) translate(200px, 0) rotate(-32.73deg); }
+.premio3 { transform: rotate(65.46deg) translate(200px, 0) rotate(-65.46deg); }
+.premio4 { transform: rotate(98.19deg) translate(200px, 0) rotate(-98.19deg); }
+.premio5 { transform: rotate(130.92deg) translate(200px, 0) rotate(-130.92deg); }
+.premio6 { transform: rotate(163.65deg) translate(200px, 0) rotate(-163.65deg); }
+.premio7 { transform: rotate(196.38deg) translate(200px, 0) rotate(-196.38deg); }
+.premio8 { transform: rotate(229.11deg) translate(200px, 0) rotate(-229.11deg); }
+.premio9 { transform: rotate(261.84deg) translate(200px, 0) rotate(-261.84deg); }
+.premio10 { transform: rotate(294.57deg) translate(200px, 0) rotate(-294.57deg); }
+.premio11 { transform: rotate(327.30deg) translate(200px, 0) rotate(-327.30deg); }
 
 .btnRoleta {
     position: absolute;
@@ -99,6 +97,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 20;
 }
 
 .play {
