@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roleta Sub-zero Beer</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
         .folha {
             position: relative;
             background-color: #cdcdcd;
@@ -148,6 +150,30 @@
         .spinning {
             animation: roleta 8s ease-out forwards;
         }
+
+        .resultado {
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .resultado.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -173,20 +199,22 @@
         <div class="seta"></div>
         <div class="btnRoleta play">▶</div>
     </div>
+    <div class="resultado">Aguardando sorteio...</div>
     <script>
         const btnRoleta = document.querySelector('.btnRoleta');
         const roleta = document.querySelector('.roleta');
+        const resultado = document.querySelector('.resultado');
 
         // Mapeamento dos prêmios para ângulos (baseado nas posições CSS)
         const premios = [
-            { id: 1, angle: 25, element: '.premio1' },  // Prêmio 1
-            { id: 2, angle: 55, element: '.premio2' },  // Prêmio 2
-            { id: 3, angle: 115, element: '.premio3' }, // Prêmio 3
-            { id: 4, angle: 150, element: '.premio4' }, // Prêmio 4
-            { id: 5, angle: 200, element: '.premio5' }, // Prêmio 5
-            { id: 6, angle: 250, element: '.premio6' }, // Prêmio 6
-            { id: 7, angle: 306, element: '.premio7' }, // Prêmio 7
-            { id: 8, angle: 333, element: '.premio8' }  // Prêmio 8
+            { id: 1, angle: 25, element: '.premio1', text: 'Prêmio 1' },
+            { id: 2, angle: 55, element: '.premio2', text: 'Prêmio 2' },
+            { id: 3, angle: 115, element: '.premio3', text: 'Prêmio 3' },
+            { id: 4, angle: 150, element: '.premio4', text: 'Prêmio 4' },
+            { id: 5, angle: 200, element: '.premio5', text: 'Prêmio 5' },
+            { id: 6, angle: 250, element: '.premio6', text: 'Prêmio 6' },
+            { id: 7, angle: 306, element: '.premio7', text: 'Prêmio 7' },
+            { id: 8, angle: 333, element: '.premio8', text: 'Prêmio 8' }
         ];
 
         btnRoleta.addEventListener('click', () => {
@@ -196,7 +224,6 @@
             // Gera um ângulo aleatório para um dos prêmios
             const randomPremio = premios[Math.floor(Math.random() * premios.length)];
             const baseAngle = randomPremio.angle;
-            // Adiciona voltas completas (5760deg = 16 voltas) + variação aleatória dentro do setor do prêmio (±22.5deg)
             const randomVariation = Math.random() * 45 - 22.5;
             const finalAngle = 5760 + baseAngle + randomVariation;
 
@@ -211,14 +238,18 @@
             btnRoleta.classList.remove('play');
             btnRoleta.classList.add('stop');
             btnRoleta.innerHTML = '■';
+            resultado.classList.remove('show');
+            resultado.textContent = 'Girando...';
 
-            // Após 8 segundos, remove a animação e reseta
+            // Após 8 segundos, exibe o resultado
             setTimeout(() => {
                 roleta.classList.remove('spinning');
-                roleta.style.transform = `rotate(${finalAngle % 360}deg)`; // Mantém a posição final
+                roleta.style.transform = `rotate(${finalAngle % 360}deg)`;
                 btnRoleta.classList.remove('stop');
                 btnRoleta.classList.add('play');
                 btnRoleta.innerHTML = '▶';
+                resultado.textContent = `Parabéns! Você ganhou: ${randomPremio.text}`;
+                resultado.classList.add('show');
                 console.log(`Roleta parou no Prêmio ${randomPremio.id} (ângulo: ${baseAngle}deg)`);
             }, 8000);
         });
