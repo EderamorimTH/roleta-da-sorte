@@ -1,152 +1,208 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roleta da Sorte</title>
-    <link rel="stylesheet" href="./roleta.css">
-</head>
-<body>
-    <div class="folha">
-        <div class="seta"></div>
-        <div class="roleta" id="roleta">
-            <div class="box1"></div>
-            <div class="box2"></div>
-            <div class="box3"></div>
-            <div class="box4"></div>
-            <div class="box5"></div>
-            <div class="box6"></div>
-            <div class="box7"></div>
-responsible for the layout and styling of the roleta da sorte. Let's update the CSS to fix the issues and make the roleta look more polished and functional. Below is the corrected and enhanced `roleta.css` file, followed by explanations of the changes.
-
-<xaiArtifact artifact_id="0ebc5965-8508-40c9-afae-60390476ec9a" artifact_version_id="d3ab5e61-d321-40a6-9337-54ee0f277728" title="roleta.css" contentType="text/css">
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    font-family: 'Arial', sans-serif;
-}
-
 .folha {
     position: relative;
-    width: 500px;
-    height: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: #cdcdcd;
+    width: 600px;
+    height: 600px;
+    padding: 50px;
+}
+
+.roleta {
+    border: 10px solid #FFF;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+/*    animation: roleta 5s linear infinite;*/
+}
+
+path {
+  fill: transparent;
 }
 
 .seta {
     position: absolute;
-    top: -30px;
-    width: 0;
-    height: 0;
+    left: 48.5%;
+    border-bottom: 0px solid transparent;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
-    border-top: 40px solid #FFD700;
-    z-index: 15;
+    border-top: 40px solid #33c9dc;
+    width: 0;
+    height: 0;
+    z-index: 999;
+    animation: animacaoSeta .35s linear infinite;
 }
 
-.roleta {
-    position: relative;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    border: 10px solid #FFF;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    transform: rotate(0deg);
-    transition: transform 8s cubic-bezier(0.1, 0.7, 0.2, 1);
-}
-
-.box1, .box2, .box3, .box4, .box5, .box6, .box7, .box8, .box9, .box10, .box11 {
+.box1,
+.box2,
+.box3,
+.box4,
+.box5,
+.box6,
+.box7,
+.box8 {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    clip-path: polygon(50% 50%, 100% 50%, 100% 0%, 50% 0%);
-    transform-origin: 50% 50%;
+    width: 0;
+    height: 0;
 }
 
-.box1 { background: #FFD700; transform: rotate(0deg); }
-.box2 { background: #FF6F61; transform: rotate(32.73deg); }
-.box3 { background: #6B5B95; transform: rotate(65.46deg); }
-.box4 { background: #88B04B; transform: rotate(98.19deg); }
-.box5 { background: #F7CAC9; transform: rotate(130.92deg); }
-.box6 { background: #92A8D1; transform: rotate(163.65deg); }
-.box7 { background: #FF69B4; transform: rotate(196.38deg); }
-.box8 { background: #00CED1; transform: rotate(229.11deg); }
-.box9 { background: #FF4500; transform: rotate(261.84deg); }
-.box10 { background: #ADFF2F; transform: rotate(294.57deg); }
-.box11 { background: #FFA500; transform: rotate(327.30deg); }
+.box1 {
+    border-top: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-bottom: 150px solid #f6685e;
+    border-left: 150px solid #f6685e;
+}
+
+.box5 {
+    border-top: 150px solid #e91e63;
+    border-right: 150px solid #e91e63;
+    border-bottom: 150px solid transparent;
+    border-left: 150px solid transparent;
+}
+
+.box2 {
+    border-top: 150px solid #9c27b0;
+    border-right: 150px solid transparent;
+    border-bottom: 150px solid transparent;
+    border-left: 150px solid #9c27b0;
+    left: 50%;
+}
+
+.box6 {
+    border-top: 150px solid transparent;
+    border-right: 150px solid #673ab7;
+    border-bottom: 150px solid #673ab7;
+    border-left: 150px solid transparent;
+    left: 50%
+}
+
+.box4 {
+    border-top: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-bottom: 150px solid #2196f3;
+    border-left: 150px solid #2196f3;
+    top: 50%;
+    left: 50%;
+}
+
+.box8 {
+    border-top: 150px solid #34399d;
+    border-right: 150px solid #34399d;
+    border-bottom: 150px solid transparent;
+    border-left: 150px solid transparent;
+    top: 50%;
+    left: 50%;
+}
+
+.box3 {
+    border-top: 150px solid #009688;
+    border-right: 150px solid transparent;
+    border-bottom: 150px solid transparent;
+    border-left: 150px solid #009688;
+    top: 50%;
+}
+
+.box7 {
+    border-top: 150px solid transparent;
+    border-right: 150px solid #ffeb3b;
+    border-bottom: 150px solid #ffeb3b;
+    border-left: 150px solid transparent;
+    top: 50%;
+}
+
+@keyframes roleta {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes animacaoSeta {
+    0% { transform: rotate(0deg)}
+    25% { transform: rotate(-15deg)}
+    75% { transform: rotate(15deg)}
+    100% { transform: rotate(0deg)}
+}
 
 .premio {
     position: absolute;
-    width: 120px;
-    text-align: center;
-    font-size: 16px;
+    z-index: 999;
+    font-size: 27px;
     font-weight: bold;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    z-index: 10;
+    color: white;
 }
 
-.premio1 { transform: rotate(16.36deg) translate(200px, 0) rotate(-16.36deg); }
-.premio2 { transform: rotate(49.09deg) translate(200px, 0) rotate(-49.09deg); }
-.premio3 { transform: rotate(81.82deg) translate(200px, 0) rotate(-81.82deg); }
-.premio4 { transform: rotate(114.55deg) translate(200px, 0) rotate(-114.55deg); }
-.premio5 { transform: rotate(147.28deg) translate(200px, 0) rotate(-147.28deg); }
-.premio6 { transform: rotate(180.01deg) translate(200px, 0) rotate(-180.01deg); }
-.premio7 { transform: rotate(212.74deg) translate(200px, 0) rotate(-212.74deg); }
-.premio8 { transform: rotate(245.47deg) translate(200px, 0) rotate(-245.47deg); }
-.premio9 { transform: rotate(278.20deg) translate(200px, 0) rotate(-278.20deg); }
-.premio10 { transform: rotate(310.93deg) translate(200px, 0) rotate(-310.93deg); }
-.premio11 { transform: rotate(343.66deg) translate(200px, 0) rotate(-343.66deg); }
+.premio1 {
+    top: 35%;
+    left: 8%;
+    transform: rotate(25deg);
+}
+
+.premio2 {
+    top: 15%;
+    left: 30%;
+    transform: rotate(55deg);
+}
+
+.premio3 {
+    top: 15%;
+    left: 55%;
+    transform: rotate(115deg);
+}
+
+.premio4 {
+    top: 33%;
+    right: 10%;
+    transform: rotate(150deg);
+}
+
+.premio5 {
+    top: 60%;
+    right: 10%;
+    transform: rotate(200deg);
+}
+
+.premio6 {
+    top: 80%;
+    right: 30%;
+    transform: rotate(250deg);
+}
+
+.premio7 {
+    top: 80%;
+    left: 30%;
+    transform: rotate(306deg);
+}
+
+.premio8 {
+    top: 60%;
+    left: 10%;
+    transform: rotate(333deg);
+}
 
 .btnRoleta {
     position: absolute;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    font-size: 20px;
-    font-weight: bold;
+    color: white;
+    background-color: #000;
+    border: 15px solid #000;
     cursor: pointer;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 20;
+    top:45%;
+    left: 45%;
+    font-size: 35px;
+    border-radius: 50%;
+    height: 42px;
+    width: 42px;
+    text-align: center;
 }
 
 .play {
-    background: #28a745;
-    color: #fff;
-}
-
-.play:hover {
-    background: #218838;
+    z-index: 999;
 }
 
 .stop {
-    background: #dc3545;
-    color: #fff;
-    display: none;
-}
-
-.stop:hover {
-    background: #c82333;
-}
-
-#msgGanhador {
-    margin-top: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #FFD700;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+/*    visibility: hidden;*/
+    animation-play-state: paused;
 }
