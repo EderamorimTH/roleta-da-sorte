@@ -1,17 +1,158 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Roleta</title>
-    <link rel="stylesheet" href="./roleta.css">
-    <script src="./roleta.js"></script>
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roleta Sub-zero Beer</title>
+    <style>
+        .folha {
+            position: relative;
+            background-color: #cdcdcd;
+            width: 600px;
+            height: 600px;
+            padding: 50px;
+            margin: auto;
+        }
 
-<body>   
+        .roleta {
+            border: 10px solid #FFF;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        path {
+            fill: transparent;
+        }
+
+        .seta {
+            position: absolute;
+            left: 50%;
+            top: 50px;
+            transform: translateX(-50%);
+            border-bottom: 0px solid transparent;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 40px solid #33c9dc;
+            width: 0;
+            height: 0;
+            z-index: 999;
+        }
+
+        .box1, .box2, .box3, .box4, .box5, .box6, .box7, .box8 {
+            position: absolute;
+            width: 0;
+            height: 0;
+        }
+
+        .box1 {
+            border-top: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 150px solid #f6685e;
+            border-left: 150px solid #f6685e;
+        }
+
+        .box5 {
+            border-top: 150px solid #e91e63;
+            border-right: 150px solid #e91e63;
+            border-bottom: 150px solid transparent;
+            border-left: 150px solid transparent;
+        }
+
+        .box2 {
+            border-top: 150px solid #9c27b0;
+            border-right: 150px solid transparent;
+            border-bottom: 150px solid transparent;
+            border-left: 150px solid #9c27b0;
+            left: 50%;
+        }
+
+        .box6 {
+            border-top: 150px solid transparent;
+            border-right: 150px solid #673ab7;
+            border-bottom: 150px solid #673ab7;
+            border-left: 150px solid transparent;
+            left: 50%;
+        }
+
+        .box4 {
+            border-top: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 150px solid #2196f3;
+            border-left: 150px solid #2196f3;
+            top: 50%;
+            left: 50%;
+        }
+
+        .box8 {
+            border-top: 150px solid #34399d;
+            border-right: 150px solid #34399d;
+            border-bottom: 150px solid transparent;
+            border-left: 150px solid transparent;
+            top: 50%;
+            left: 50%;
+        }
+
+        .box3 {
+            border-top: 150px solid #009688;
+            border-right: 150px solid transparent;
+            border-bottom: 150px solid transparent;
+            border-left: 150px solid #009688;
+            top: 50%;
+        }
+
+        .box7 {
+            border-top: 150px solid transparent;
+            border-right: 150px solid #ffeb3b;
+            border-bottom: 150px solid #ffeb3b;
+            border-left: 150px solid transparent;
+            top: 50%;
+        }
+
+        .premio {
+            position: absolute;
+            z-index: 998;
+            font-size: 27px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .premio1 { top: 35%; left: 8%; transform: rotate(25deg); }
+        .premio2 { top: 15%; left: 30%; transform: rotate(55deg); }
+        .premio3 { top: 15%; left: 55%; transform: rotate(115deg); }
+        .premio4 { top: 33%; right: 10%; transform: rotate(150deg); }
+        .premio5 { top: 60%; right: 10%; transform: rotate(200deg); }
+        .premio6 { top: 80%; right: 30%; transform: rotate(250deg); }
+        .premio7 { top: 80%; left: 30%; transform: rotate(306deg); }
+        .premio8 { top: 60%; left: 10%; transform: rotate(333deg); }
+
+        .btnRoleta {
+            position: absolute;
+            color: white;
+            background-color: #000;
+            border: 15px solid #000;
+            cursor: pointer;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 35px;
+            border-radius: 50%;
+            height: 42px;
+            width: 42px;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .spinning {
+            animation: roleta 8s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
     <div class="folha">
-        <div class="seta"></div>
-        <div class="roleta" id="roleta">
+        <div class="roleta">
             <div class="box1"></div>
             <div class="box2"></div>
             <div class="box3"></div>
@@ -20,21 +161,77 @@
             <div class="box6"></div>
             <div class="box7"></div>
             <div class="box8"></div>
-            
-            <div class="premio premio1" id="opt1">100 reais</div>
-            <div class="premio premio2" id="opt0">110 reais</div>
-            <div class="premio premio3" id="opt7">115 reais</div>
-            <div class="premio premio4" id="opt6">120 reais</div>
-            <div class="premio premio5" id="opt5">125 reais</div>
-            <div class="premio premio6" id="opt4">130 reais</div>
-            <div class="premio premio7" id="opt3">140 reais</div>
-            <div class="premio premio8" id="opt2">150 reais</div>
-            
-            <div id="btnPlay" class="btnRoleta play" onclick="playOnClick()">►</div>
-            <div id="btnStop" class="btnRoleta stop" onclick="stopOnClick()">❚❚</div>
+            <div class="premio premio1">Prêmio 1</div>
+            <div class="premio premio2">Prêmio 2</div>
+            <div class="premio premio3">Prêmio 3</div>
+            <div class="premio premio4">Prêmio 4</div>
+            <div class="premio premio5">Prêmio 5</div>
+            <div class="premio premio6">Prêmio 6</div>
+            <div class="premio premio7">Prêmio 7</div>
+            <div class="premio premio8">Prêmio 8</div>
         </div>
+        <div class="seta"></div>
+        <div class="btnRoleta play">▶</div>
     </div>
-    <p id="msgGanhador"></p>
-</body>
+    <script>
+        const btnRoleta = document.querySelector('.btnRoleta');
+        const roleta = document.querySelector('.roleta');
 
+        // Mapeamento dos prêmios para ângulos (baseado nas posições CSS)
+        const premios = [
+            { id: 1, angle: 25, element: '.premio1' },  // Prêmio 1
+            { id: 2, angle: 55, element: '.premio2' },  // Prêmio 2
+            { id: 3, angle: 115, element: '.premio3' }, // Prêmio 3
+            { id: 4, angle: 150, element: '.premio4' }, // Prêmio 4
+            { id: 5, angle: 200, element: '.premio5' }, // Prêmio 5
+            { id: 6, angle: 250, element: '.premio6' }, // Prêmio 6
+            { id: 7, angle: 306, element: '.premio7' }, // Prêmio 7
+            { id: 8, angle: 333, element: '.premio8' }  // Prêmio 8
+        ];
+
+        btnRoleta.addEventListener('click', () => {
+            // Evita múltiplos cliques enquanto a roleta gira
+            if (roleta.classList.contains('spinning')) return;
+
+            // Gera um ângulo aleatório para um dos prêmios
+            const randomPremio = premios[Math.floor(Math.random() * premios.length)];
+            const baseAngle = randomPremio.angle;
+            // Adiciona voltas completas (5760deg = 16 voltas) + variação aleatória dentro do setor do prêmio (±22.5deg)
+            const randomVariation = Math.random() * 45 - 22.5;
+            const finalAngle = 5760 + baseAngle + randomVariation;
+
+            // Define a animação com o ângulo aleatório
+            roleta.style.animation = `none`;
+            roleta.offsetHeight; // Força reflow
+            roleta.style.animation = `roleta 8s ease-out forwards`;
+            roleta.style.setProperty('--final-angle', `${finalAngle}deg`);
+
+            // Adiciona a classe para iniciar a animação
+            roleta.classList.add('spinning');
+            btnRoleta.classList.remove('play');
+            btnRoleta.classList.add('stop');
+            btnRoleta.innerHTML = '■';
+
+            // Após 8 segundos, remove a animação e reseta
+            setTimeout(() => {
+                roleta.classList.remove('spinning');
+                roleta.style.transform = `rotate(${finalAngle % 360}deg)`; // Mantém a posição final
+                btnRoleta.classList.remove('stop');
+                btnRoleta.classList.add('play');
+                btnRoleta.innerHTML = '▶';
+                console.log(`Roleta parou no Prêmio ${randomPremio.id} (ângulo: ${baseAngle}deg)`);
+            }, 8000);
+        });
+
+        // Define a animação CSS dinamicamente
+        const styleSheet = document.createElement('style');
+        styleSheet.innerHTML = `
+            @keyframes roleta {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(var(--final-angle, 5760deg)); }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    </script>
+</body>
 </html>
